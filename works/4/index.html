@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>无缝滚动——左右</title>
+    <style type="text/css">
+    *{margin:0px;padding:0px;}
+    ul{list-style-type:none;}
+    #scroll{width:698px;height:108px;margin:50px auto 0;position:relative;overflow:hidden;}
+    .btn_left{display:block;background:red;width:68px;height:68px;position:absolute;top:20px;left:1px;z-index:1;text-align:center;line-height:68px;color:#fff;}
+    .btn_right{display:block;background:red;width:68px;height:68px;position:absolute;top:20px;right:0;z-index:1;text-align:center;line-height:68px;color:#fff;}
+    #scroll .content{width:546px;height:108px;position:relative;overflow:hidden;margin:0 auto;}
+    #scroll ul{position:absolute;}
+    #scroll li{float:left;width:182px;height:108px;text-align:center;}
+    #scroll li a{width:182px;height:108px;display:block;}
+    #scroll li a:hover{position:relative;top:2px;}
+    </style>
+</head>
+<body>
+    <div id="scroll">
+        <a href="javascript:;" class="btn_left">左</a>
+        <a href="javascript:;" class="btn_right">右</a>
+        <div class="content">
+            <ul>
+                <li><a href="#" style="background:red"></a></li>
+                <li><a href="#" style="background:blue"></a></li>
+                <li><a href="#" style="background:green"></a></li>
+                <li><a href="#" style="background:yellow"></a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+window.onload = function(){
+    var oDiv = document.getElementById('scroll');
+    var oUl = oDiv.getElementsByTagName('ul')[0];
+    var aLi = oDiv.getElementsByTagName('li');
+    var aBtn = oDiv.getElementsByTagName('a');
+    var speed = -1;
+    var timer = null;
+    oUl.innerHTML += oUl.innerHTML;
+    oUl.style.width = aLi[0].offsetWidth * aLi.length + 'px';
+    timer = setInterval(function(){
+        oUl.style.left = oUl.offsetLeft + speed + 'px';
+        if(oUl.offsetLeft < - oUl.offsetWidth / 2){
+            oUl.style.left = '0';
+        }else if(oUl.offsetLeft > 0){
+            oUl.style.left = - oUl.offsetWidth / 2 + 'px';
+        }
+    },30);
+    aBtn[0].onclick = function(){
+        speed = -1;
+    };
+    aBtn[1].onclick = function(){
+        speed = 1;
+    };
+    oUl.onmouseover = function(){
+        clearInterval(timer);
+    };
+    oUl.onmouseout = function(){
+        timer = setInterval(function(){
+            oUl.style.left = oUl.offsetLeft + speed + 'px';
+            if(oUl.offsetLeft < -oUl.offsetWidth / 2){
+                oUl.style.left = '0';
+            }else if(oUl.offsetLeft > 0){
+                oUl.style.left = - oUl.offsetWidth / 2 + 'px';
+            }
+        },30);
+    };
+};
+</script>
