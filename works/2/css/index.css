@@ -1,0 +1,6 @@
+html{font-size:20px;}
+#box{width:16rem;overflow:hidden;}
+.box_con{width:16rem;}
+.every{width:16rem;position:relative;}
+.every p{position:absolute;width:16rem;text-align:center;}
+img{width:100%;height:100%;}
