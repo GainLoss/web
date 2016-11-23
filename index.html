@@ -180,19 +180,17 @@
 		function hw(){
 			var h=$(window).height();
 			var w=$(window).width();
-			console.log(w);
+
 			if(w>=750){
-				console.log(1);
 				$(".contain").css({"height":h+"px","overflow":"hidden"});
 				$(".comment").css({"height":h+"px"});
 				clicknav()
 			}else if(w<750){
-				console.log(2);
 				$(".right").css("margin-top","0px");
 				$(".contain").css({"height":"100%","overflow":"auto"});
 				$(".comment").css({"height":"750px"});
 				$(".works .every").css({"height":"25%"});
-				clicknavsamll();
+				
 			}
 			
 		};
